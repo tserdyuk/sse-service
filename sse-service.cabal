@@ -1,0 +1,27 @@
+name: sse-service
+version: 1.0.0
+synopsis: SSE Service
+homepage: https://github.com/tserdyuk/sse-service
+license: MIT
+license-file: LICENSE
+author: Taras Serdyuk
+maintainer: taras@techburg.io
+category: Web
+build-type: Simple
+extra-source-files: README.md
+cabal-version: >= 1.10
+
+executable sse-service
+  main-is: Main.hs
+  default-extensions:
+    LambdaCase,
+    OverloadedStrings
+  build-depends:
+    base >=4.7 && <4.8,
+    http-types,
+    sse,
+    text,
+    wai,
+    warp
+  hs-source-dirs: src
+  default-language: Haskell2010
