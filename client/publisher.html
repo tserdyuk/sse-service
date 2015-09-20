@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<script type="text/javascript">
+		function send() {
+			var key = document.getElementById('key').value
+			var data = document.getElementById('data').value
+			var http = new XMLHttpRequest()
+			http.open('POST', 'http://localhost:5000/' + key, true)
+			http.send(data)
+		}
+	</script>
+	<input id="key" placeholder="Key" />
+	<input id="data" placeholder="Data" />
+	<button onclick="send()">Send</button>
+</body>
+</html>

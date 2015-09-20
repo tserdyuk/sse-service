@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<script type="text/javascript">
+		function subscribe() {
+			var key = document.getElementById('key').value
+			var data = document.getElementById('data')
+			var source = new EventSource('http://localhost:3000/' + key)
+			source.onmessage = function(event) {
+				data.innerHTML = data.innerHTML + event.data + '<br>'
+			}
+		}
+	</script>
+	<input id="key" placeholder="Key" />
+	<button onclick="subscribe()">Subscribe</button>
+	<div id="data"></div>
+</body>
+</html>
