@@ -1,17 +1,20 @@
 
 module Main where
 
+import Data.Maybe (fromMaybe)
 import Data.Text (Text)
 import Network.HTTP.Types (notFound404, ok200)
 import Network.Wai (Application, lazyRequestBody, pathInfo)
 import Network.Wai.Handler.Warp (defaultSettings, runSettings, setOnClose, setPort)
+import ReadArgs (readArgs)
 import SSE (SSErvice, bsEvent, emptyResponse, onClose, send, sservice, subscribe)
 
 
 main :: IO ()
 main = do
 	sse <- sservice
-	let settings = setPort 3000 $ setOnClose (onClose sse) defaultSettings
+	port <- fmap (fromMaybe 3000) readArgs
+	let settings = setPort port $ setOnClose (onClose sse) defaultSettings
 	runSettings settings (application sse)
 
 application :: SSErvice Text -> Application
